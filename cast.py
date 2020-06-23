@@ -1,11 +1,10 @@
-
-
-
 from numpy import mean
 import networkx as nx
 from jellyfish import levenshtein_distance as edit_distance
+import sys
 
-
+if sys.version_info.major == 2:
+    str = unicode
 
 
 class Cast(object):
@@ -17,13 +16,13 @@ class Cast(object):
             self.graph.add_node(x, weight=int(y))
 
         self._dist_dict = {}
-        keys = raw_cdr3_dict.keys()
-
+        keys = list(raw_cdr3_dict.keys())
+        
         for i in range(len(keys)):
             for j in range(i, len(keys)):
                 x, u = keys[i], keys[j]
                 if x != u:
-                    w = 1.0/ int(edit_distance(unicode(x), unicode(u)))
+                    w = 1.0/ int(edit_distance(str(x), str(u)))
                 else:
                     w = 2.0
                 self._dist_dict[(x, u)] = w
@@ -43,7 +42,7 @@ class Cast(object):
                 dists.append((node1, mean_dist))
         if dists:
             return max(dists, key=lambda z: z[1])[0]
-        return None 
+        return None
 
 
 
@@ -82,7 +81,7 @@ class Cast(object):
                 dist = self.__distant(cluster, threshold)
             new_cluster = []
             for node in cluster:
-                new_cluster.append((node, self.graph.node[node]["weight"]))
+                new_cluster.append((node, self.graph.nodes[node]["weight"]))
             partition.append(new_cluster)
             for vert in cluster:
                 self.graph.remove_node(vert)
@@ -117,7 +116,7 @@ if __name__ == "__main__":
 
     inputfile = sys.argv[1]
     outputfile = sys.argv[2]
-    
+
     castdict = {}
     typedict = {}
     result = []
@@ -142,5 +141,3 @@ if __name__ == "__main__":
             line = [x, chtype, y] + typedict[x]
             result.append("%s\n" % ",".join(map(str, line)))
     dumpClones2(result, outputfile)
-
-
