@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+
+import argparse
+import ImReP.imrep as imrep
+
+ap = argparse.ArgumentParser("python imrep.py")
+
+necessary_arguments = ap.add_argument_group("Necessary Inputs")
+necessary_arguments.add_argument("reads_file", help="unmapped reads in .fasta (default) or .fastq (if flag --fastq is set) or .bam (if --bam or --digGold is set)")
+necessary_arguments.add_argument("output_dir", help="output directory to save file with CDR3 clonotypes")
+
+optional_arguments = ap.add_argument_group("Optional Inputs")
+optional_arguments.add_argument("--fastq", help="a binary flag used to indicate that the input file with unmapped reads is in fastq format", dest="isFastq", action="store_true")
+optional_arguments.add_argument("--bam", help="a binary flag used to indicate that the input file is a BAM file mapped and  unmapped reads", dest="isBAM", action="store_true")
+optional_arguments.add_argument("--chrFormat2", help="a binary flag used to indicate that the format of chromosome name in the bam file is in this format : chr1, chr2,..,chrX. This options is only compatible with --bam option. By default we asssume chromosmes names are indicated only by numbers :1,2,3,...,X", dest="is_chrFormat2", action="store_true")
+
+
+optional_arguments.add_argument("--hg38", help="a binary flag used to indicate that reads were mapped to hg38 rellease. The default is hg19. For mouse we support only mm10 (default). ", dest="is_hg38", action="store_true")
+optional_arguments.add_argument("-a", "--allReads", help="Original raw reads (all reads). Needs to be used with --digGold option", type=str, dest="allReads")
+
+
+optional_arguments.add_argument("--digGold", help="a binary flag used to indicate that the input file is FASTQ file with original raw reads (all reads). And unmapped reads needs to be extracted from the raw reads ( original raw reads are provided using --reads_file option). Use this option only if unmapped reads were not saved. Needs to be used with -m option", dest="is_digGold", action="store_true")
+
+
+optional_arguments.add_argument("-s", "--species", help="species (human or mouse, default human)", type=str, dest="species")
+optional_arguments.add_argument("-o", "--overlapLen", help="the minimal length to consider between reads overlapping with a V gene and reads overlapping with a J gene. Default value is 5 amino acids.", type=int)
+optional_arguments.add_argument("--noOverlapStep", help="a binary flag used in case if the user does not want to run the second stage of the ImReP assembly.", dest="noOverlapStep", action="store_true")
+optional_arguments.add_argument("--extendedOutput", help="extended output: write information read by read", dest="extendedOutput", action="store_true")
+optional_arguments.add_argument("-c", "--chains", help="chains: comma separated values from IGH,IGK,IGL,TRA,TRB,TRD,TRG", type=str)
+optional_arguments.add_argument("--noCast", help="specify this option if you want to disable CDR3 clustering", dest="noCast", action="store_true")
+optional_arguments.add_argument("-f", "--filterThreshold", help="filter out clonotypes with readcount less or equal than filterThreshold (remove outliers), default is 1", type=int)
+
+advanced_arguments = ap.add_argument_group("Advanced Inputs")
+advanced_arguments.add_argument("--minOverlap1", help="minimal overlap between the reads and A) the left part of V gene (before C amino acid) and B) the right part of J gene (after W for IGH and F for all other chains), default is 4", type=int)
+advanced_arguments.add_argument("--minOverlap2", help="minimal overlap between the reads and A) the right part of V gene (after C amino acid) and B) the left part of J gene (before W for IGH and F for all other chains), default is 1", type=int)
+advanced_arguments.add_argument("--misMatch1", help="maximal number of mismatches between the reads and A) the left part of V gene (before C amino acid) and B) the right part of J gene (after W for IGH and F for all other chains), default is 2", type=int)
+advanced_arguments.add_argument("--misMatch2", help="maximal number of mismatches between the reads and A) the right part of V gene (after C amino acid) and B) the left part of J gene (before W for IGH and F for all other chains), default is 2", type=int)
+
+
+args = ap.parse_args()
+
+imrep = ImReP()
+
+imrep.configure(args)
+
+imrep.computeClones(inputfile=args.reads_file, format=args.format, outputDir=args.output_dir)
