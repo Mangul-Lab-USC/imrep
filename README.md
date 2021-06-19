@@ -16,12 +16,13 @@ Install ImReP from the base directory
 cd imrep
 ./install.sh 
 ```
-
 Run ImReP analysis by a single command for the BAM file with mapped and unmapped reads (preferred). BAM file needs to be indexed (.bai file). Forgot to save unmapped reads, we got you covered. Learn more [here](https://github.com/mandricigor/imrep/wiki/Forgot-to-save-unmapped-reads%3F)
 
 ```
 python imrep.py --bam example/toyExample.bam example/toyExample.cdr3
 ```
+
+Note : ImReP is written in Python2.7. So if your cluster default Python version is not 2.7, then you will have to first load it and then compile the above command.
 
 Find ImReP analysis in _toyExample_ directory. Learn more [here](https://github.com/mandricigor/imrep/wiki/Quick-Start) 
 
@@ -51,7 +52,7 @@ Using ImReP we have created the Atlas of Immunoglobilin Repertoires (TheAIR). Th
 
 # Contact 
 
-This software was developed by [Igor Mandric](https://github.com/mandricigor) and [Serghei Mangul](https://sergheimangul.wordpress.com/). Please do not hesitate to contact us (mandric.igor@gmail.com, smangul@ucla.edu) if you have any comments, suggestions, or clarification requests regarding the tutorial or if you would like to contribute to this resource.
+This software was developed by [Igor Mandric](https://github.com/mandricigor) and [Serghei Mangul](https://github.com/Mangul-Lab-USC/). Please do not hesitate to contact us (mandric.igor@gmail.com, mangul@usc.edu) if you have any comments, suggestions, or clarification requests regarding the tutorial or if you would like to contribute to this resource.
 
 
 
