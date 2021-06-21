@@ -27,6 +27,20 @@ Note : ImReP is written in Python2.7. So if your cluster default Python version 
 Find ImReP analysis in _toyExample_ directory. Learn more [here](https://github.com/mandricigor/imrep/wiki/Quick-Start) 
 
 
+## Docker Usage
+Build the docker container from the current working directory:
+```
+docker build -t imrep .
+```
+Run the docker container and pass in the necessary `<options>`
+```
+docker run --rm -ti imrep <options>
+```
+Here is a full example with Docker:
+```
+docker build -t imrep .
+docker run --rm -ti imrep --bam example/toyExample.bam example/toyExample.cdr3
+```
 # ImReP Tutorial
 
 Use the sidebar on the right to navigate ImReP tutorial. Get started with a toy example of 200 RNA-Seq reads (_example/toyExample.bam_) distributed with ImRep package
