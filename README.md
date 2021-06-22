@@ -6,19 +6,19 @@
 ImReP is a method for rapid and accurate profiling of the adaptive immune repertoires from regular RNA-Seq data
  
 Download ImReP using 
-```
+```bash
 git clone https://github.com/mandricigor/imrep.git
 ```
 
 Install ImReP from the base directory
 
-```
+```bash
 cd imrep
 ./install.sh 
 ```
 Run ImReP analysis by a single command for the BAM file with mapped and unmapped reads (preferred). BAM file needs to be indexed (.bai file). Forgot to save unmapped reads, we got you covered. Learn more [here](https://github.com/mandricigor/imrep/wiki/Forgot-to-save-unmapped-reads%3F)
 
-```
+```bash
 python imrep.py --bam example/toyExample.bam example/toyExample.cdr3
 ```
 
@@ -28,16 +28,22 @@ Find ImReP analysis in _toyExample_ directory. Learn more [here](https://github.
 
 
 ## Docker Usage
-Build the docker container from the current working directory:
-```
+Docker enables you to run ImRep without needing to explicitly install and manage its dependencies. You can install and learn more about Docker [here](https://www.docker.com/products/docker-desktop).
+
+First, build the docker container from the current working directory:
+```bash
+git clone https://github.com/Mangul-Lab-USC/imrep.git
+# Make sure you are in the correct directory...
+cd imrep
+# build the docker container and give it a <tag> `-t`
 docker build -t imrep .
 ```
-Run the docker container and pass in the necessary `<options>`
-```
+Run the docker container and pass in your intended `<options>`.
+```bash
 docker run --rm -ti imrep <options>
 ```
 Here is a full example with Docker:
-```
+```bash
 docker build -t imrep .
 docker run --rm -ti imrep --bam example/toyExample.bam example/toyExample.cdr3
 ```
