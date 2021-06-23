@@ -28,7 +28,7 @@ Find ImReP analysis in _toyExample_ directory. Learn more [here](https://github.
 
 
 ## Docker Usage
-Docker enables you to run ImRep without needing to explicitly install and manage its dependencies. You can install and learn more about Docker [here](https://www.docker.com/products/docker-desktop).
+Docker enables you to run ImRep without needing to explicitly install and manage its dependencies. You can learn more about Docker [here](https://docs.docker.com/get-started/overview/).
 
 First, build the docker container from the current working directory:
 ```bash
@@ -38,14 +38,16 @@ cd imrep
 # build the docker container and give it a <tag> `-t`
 docker build -t imrep .
 ```
-Run the docker container and pass in your intended `<options>`.
+Run the docker container like so, and pass in your intended ImRep `<options>`.
 ```bash
-docker run --rm -ti imrep <options>
+docker run --rm -v ${PWD}:/imrep -ti imrep <options>
 ```
+In this case, we mount a Docker [volume](https://docs.docker.com/storage/volumes/) `-v` to recieve the output generated from within the container locally.
+
 Here is a full example with Docker:
 ```bash
 docker build -t imrep .
-docker run --rm -ti imrep --bam example/toyExample.bam example/toyExample.cdr3
+docker run --rm -v ${PWD}:/imrep -ti imrep --bam example/toyExample.bam example/toyExample.cdr3
 ```
 # ImReP Tutorial
 
