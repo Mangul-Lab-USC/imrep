@@ -62,7 +62,7 @@ This command processes the FASTQ file and generates output in the specified dire
 
 Additional Information
 Python Version: This environment is specifically configured for Python 2.7, as required by the imrep.py script.
-Conda Environment: The imrep2 environment is isolated from other conda environments, ensuring that the dependencies of this project do not interfere with other projects.
+Conda Environment: The imrep environment is isolated from other conda environments, ensuring that the dependencies of this project do not interfere with other projects.
 Dependencies: The environment includes Python 2.7, pysam, and biopython, along with any other dependencies required by the imrep.py script and related tasks.
 
 
