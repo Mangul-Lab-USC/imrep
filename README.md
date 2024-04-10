@@ -10,7 +10,7 @@ Download ImReP using
 git clone https://github.com/mandricigor/imrep.git
 ```
 
-# Environment Setup
+## Environment Setup
 Create the imrep Conda Environment:
 ```bash
 conda create -n imrep python=2.7
@@ -23,7 +23,7 @@ conda activate imrep
 ```
 Activate the newly created environment to use Python 2.7 and install the necessary packages.
 
-# Installation and Setup
+## Installation and Setup
 Build and Install the Python Package: Navigate to the suffix_tree-2.1 directory and run the following commands:
 ```bash
 cd suffix_tree-2.1
@@ -60,7 +60,7 @@ python2 ../imrep.py --fastq toyExample.fastq output1
 ```
 This command processes the FASTQ file and generates output in the specified directory.
 
-# Additional Information
+## Additional Information
 Python Version: This environment is specifically configured for Python 2.7, as required by the imrep.py script.
 Conda Environment: The imrep environment is isolated from other conda environments, ensuring that the dependencies of this project do not interfere with other projects.
 Dependencies: The environment includes Python 2.7, pysam, and biopython, along with any other dependencies required by the imrep.py script and related tasks.
