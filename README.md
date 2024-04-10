@@ -10,19 +10,61 @@ Download ImReP using
 git clone https://github.com/mandricigor/imrep.git
 ```
 
-Install ImReP from the base directory
-
+Environment Setup
+Create the imrep Conda Environment:
 ```bash
-cd imrep
-./install.sh 
+conda create -n imrep python=2.7
 ```
-Run ImReP analysis by a single command for the BAM file with mapped and unmapped reads (preferred). BAM file needs to be indexed (.bai file). Forgot to save unmapped reads, we got you covered. Learn more [here](https://github.com/mandricigor/imrep/wiki/Forgot-to-save-unmapped-reads%3F)
+This command creates a new conda environment named imrep with Python version 2.7.
 
+Activate the imrep Environment:
 ```bash
-python imrep.py --bam example/toyExample.bam example/toyExample.cdr3
+conda activate imrep
 ```
+Activate the newly created environment to use Python 2.7 and install the necessary packages.
 
-Note : ImReP is written in Python2.7. So if your cluster default Python version is not 2.7, then you will have to first load it and then compile the above command.
+Installation and Setup
+Build and Install the Python Package: Navigate to the suffix_tree-2.1 directory and run the following commands:
+```bash
+cd suffix_tree-2.1
+python2 setup.py build
+python2 setup.py install
+```
+These commands build and install the Python package in the current directory.
+
+Run the Installation Script: Execute the install.sh script in the parent directory:
+```bash
+cd ..
+sh install.sh
+```
+This script performs additional setup tasks required for the environment.
+
+Install Additional Packages: Install the pysam and biopython packages in the imrep2 environment:
+```bash
+conda install pysam
+conda install biopython
+```
+These packages are necessary for the imrep.py script to function correctly.
+
+Running the imrep.py Script
+Display Help Message: To understand the usage of the imrep.py script, run:
+```bash
+python2 imrep.py -h
+```
+This command displays the help message for the script.
+
+Process a FASTQ File: Navigate to the example directory and run the imrep.py script with a FASTQ file named toyExample.fastq, outputting to output1:
+```bash
+cd example
+python2 ../imrep.py --fastq toyExample.fastq output1
+```
+This command processes the FASTQ file and generates output in the specified directory.
+
+Additional Information
+Python Version: This environment is specifically configured for Python 2.7, as required by the imrep.py script.
+Conda Environment: The imrep2 environment is isolated from other conda environments, ensuring that the dependencies of this project do not interfere with other projects.
+Dependencies: The environment includes Python 2.7, pysam, and biopython, along with any other dependencies required by the imrep.py script and related tasks.
+
 
 Find ImReP analysis in _toyExample_ directory. Learn more [here](https://github.com/mandricigor/imrep/wiki/Quick-Start) 
 
