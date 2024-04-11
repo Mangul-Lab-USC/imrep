@@ -102,11 +102,8 @@ ImReP is a method to quantify individual immune response based on a recombinatio
 
 # Publication
 
-Mangul, Serghei, et al. ["Profiling adaptive immune repertoires across multiple human tissues by RNA Sequencing"](http://www.biorxiv.org/content/early/2017/03/25/089235) bioRxiv (2016): 089235. 
+Mangul, Serghei, et al. ["Profiling adaptive immune repertoires across multiple human tissues by RNA Sequencing"](https://www.nature.com/articles/s41467-020-16857-7) . 
 
-# Presentations
-
-Slides from my talk at ISMB 2017 (HiTSeq 2017) are available [here](https://sergheimangul.files.wordpress.com/2017/07/hitseq_2017_public.pdf)
 
 
 ## The Atlas of Immune Repertoires (TheAIR)
